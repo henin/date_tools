@@ -2,12 +2,10 @@
 # ! /usr/bin/env python3
 # Filename: date_tools.py
 # Description: Date utlities to guess the type of date format
-# Author: Henin Karkada <henin.karkada@namastecredit.com>
+# Author: Henin Karkada <henin.roland@gmail.com>
 # Python Environment - Python3
-# Usage: import date_tools
-#         date_tools.<functionality_name>
-#
-# Use Cases:
+# Usage: from date_tools import date_guesser
+# Creation Date: 31-July-2018
 # ==============================================================================
 
 # Standard Modules
