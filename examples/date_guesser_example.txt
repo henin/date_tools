@@ -1,4 +1,0 @@
-from date_tools import date_guesser
-
-Example 1: date_guesser.guess_date_format("22/03/2018")
-Example 2: date_guesser.guess_date_format(["02-03-2018", "12-05-2018"])

@@ -1,5 +1,4 @@
 # =============================================================================
-# ! /usr/bin/env python3
 # Filename: date_tools.py
 # Description: Date utlities to guess the type of date format
 # Author: Henin Karkada <henin.roland@gmail.com>
@@ -16,9 +15,7 @@ from datetime import datetime
 from collections import Counter
 
 # Logging Basic Configuration
-logging.basicConfig(format='%(levelname)s: %(asctime)s.%(msecs)03d:: %(name)s: %(filename)s:: %(funcName)s(): %(lineno)s] %(message)s', level=logging.DEBUG, datefmt='%d-%m-%Y %H:%M:%S')
-
-error_dates = {}
+logging.basicConfig(format='%(levelname)s: %(asctime)s.%(msecs)03d:: %(filename)s:: %(funcName)s(): %(lineno)s %(message)s', level=logging.DEBUG, datefmt='%d-%m-%Y %H:%M:%S')
 
 def guess_date_format(dates_list):
     """
@@ -57,7 +54,7 @@ def guess_date_format(dates_list):
         if date_separator:
             date_separator = date_separator[0][0]
         else:
-            return default_date_format
+            date_separator = "no_space"
     except Exception as error:
         error_msg = "Error : {} occurred when trying to guess the date " \
                     "format. returning `{}` as default date format".format(
@@ -142,7 +139,8 @@ def guess_date_format(dates_list):
                         "%Y %B", "%B %Y",
                         "%B %y", "%B %y", "%y %B",
                         "%y %B", "%y %B"]
-    else:
+
+    elif 'no_space' == date_separator:
         date_formats = ["%d%m%Y", "%m%d%Y", "%Y%m%d",
                         "%Y%d%m", "%m%Y%d",
                         "%d%m%y", "%m%d%y", "%y%m%d",
@@ -175,8 +173,8 @@ def guess_date_format(dates_list):
     for date_string in dates_list:
         for date_format in date_formats:
             try:
-                if datetime.strptime(date_string, date_format) and (
-                        datetime.strptime(date_string, date_format) <= now):
+                date_obj = datetime.strptime(date_string.strip(), date_format)
+                if date_obj and (date_obj <= now):
                     date_format_res.append(date_format)
             except ValueError:
                 continue
@@ -187,11 +185,13 @@ def guess_date_format(dates_list):
             date_format_common = Counter(date_format_res).most_common(1)
             if date_format_common:
                 date_format = date_format_common[0][0]
-                logging.info("Date format detected: {}".format(date_format))
+                logging.info("Date format detected: `{}`".format(date_format))
                 return date_format
             else:
+                logging.warning("Unable to determine the date format, default date format returned: `{}`".format(default_date_format))
                 return default_date_format
         else:
+            logging.warning("Unable to determine the date format, default date format returned: `{}`".format(default_date_format))
             return default_date_format
     except Exception as error:
         error_msg = "Error : {} occurred when trying to guess the date " \

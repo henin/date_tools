@@ -1,7 +1,8 @@
 steps.txt
-*.pyc
-.idea
-__pycache__
+date_tools/*.pyc
+date_tools/.idea
+date_tools/__pycache__
+date_tools/*.swp
 build/
 dist/
 date_tools.egg-info/
