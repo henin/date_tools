@@ -15,7 +15,7 @@ from datetime import datetime
 from collections import Counter
 
 # Logging Basic Configuration
-logging.basicConfig(format='%(levelname)s: %(asctime)s.%(msecs)03d:: %(filename)s:: %(funcName)s(): %(lineno)s %(message)s', level=logging.DEBUG, datefmt='%d-%m-%Y %H:%M:%S')
+logging.basicConfig(format='%(levelname)s: %(asctime)s.%(msecs)03d:: %(filename)s:: %(funcName)s():: %(lineno)s ::  %(message)s', level=logging.DEBUG, datefmt='%d-%m-%Y %H:%M:%S')
 
 def guess_date_format(dates_list):
     """
