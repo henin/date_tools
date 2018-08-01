@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="date_tools",
-    version="0.0.2",
+    version="0.0.3",
     author="Henin Roland Karkada",
     author_email="henin.roland@gmail.com",
     description="Date utilities to guess the date format given any date string or list of date strings",

@@ -4,6 +4,9 @@
 
 **date_tools** provides an integrated collection of date utilities to help you guess the date format of any given date string/list
 
+**Installation:**
+> $ pip install date-tools
+
 **Usage**:
 > **guess_date_format()** -> Expects a single date/ List of dates
 
@@ -34,8 +37,10 @@
 >
 > Example 8: $ date_guesser.guess_date_format("March/2018")
 > Output: '%B/%Y'
+>
 
 > b) List of dates:
+
 > Example 1: $ date_guesser.guess_date_format(["02 March 2018", "12 May 2018","10 December 2018", "22/03/1988"])
 > Output: '%d %B %Y' --> Returned as '%d %B %Y' was the date format matched with majority of the items
 
